@@ -6,11 +6,16 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import com.mysite.sbb.user.SiteUser;
+import java.util.*;
+import jakarta.persistence.ManyToMany;
 
 @Getter
 @Setter
 @Entity
 public class Answer {
+    private LocalDateTime modifyDate;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -22,4 +27,10 @@ public class Answer {
 
     @ManyToOne
     private Question question;
+
+    @ManyToOne
+    private SiteUser author;
+
+    @ManyToMany
+    Set<SiteUser> voter;
 }
